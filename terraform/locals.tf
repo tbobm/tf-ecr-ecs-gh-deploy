@@ -17,7 +17,7 @@ locals {
   lb = merge(local.lb_defaults, var.lb_values)
 
   vpc_defaults = {
-    id = "vpc-ef26d387"
+    id                 = "vpc-ef26d387"
     availability_zones = ["${local.region}a", "${local.region}b", "${local.region}c"]
     subnets = {
       "${local.region}a" = "172.31.0.0/20"
@@ -26,4 +26,11 @@ locals {
     }
   }
   vpc = merge(local.vpc_defaults, var.vpc_values)
+
+  container_defaults = {
+    name  = "hello"
+    image = "particule/helloworld"
+    ports = [80]
+  }
+  container = merge(local.container_defaults, var.container)
 }

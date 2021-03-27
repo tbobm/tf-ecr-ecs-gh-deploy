@@ -1,15 +1,15 @@
 resource "aws_lb_target_group" "group" {
-  name     = "tf-lb-tg"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = data.aws_vpc.main.id
+  name        = "tf-lb-tg"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = data.aws_vpc.main.id
   target_type = "ip"
 
   depends_on = [aws_lb.alb]
 }
 
 data "aws_subnet" "subnets" {
-  for_each = toset(local.vpc.availability_zones)
+  for_each          = toset(local.vpc.availability_zones)
   vpc_id            = data.aws_vpc.main.id
   availability_zone = each.value
 }

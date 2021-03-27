@@ -4,7 +4,6 @@ variable "aws_region" {
   description = "AWS region"
 }
 
-
 variable "ecr_values" {
   type        = any
   default     = {}
@@ -27,4 +26,10 @@ variable "vpc_values" {
   type        = any
   default     = {}
   description = "AWS Load Balancer configuration"
+}
+
+variable "container" {
+  type        = any
+  default     = {}
+  description = "Container configuration to deploy"
 }

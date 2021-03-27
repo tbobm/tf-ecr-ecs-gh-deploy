@@ -22,8 +22,7 @@ resource "aws_lb" "alb" {
   name               = "tf-alb"
   internal           = false
   load_balancer_type = "application"
-  # security_groups    = [aws_security_group.lb_sg.id]
-  subnets = [for s in data.aws_subnet.subnets : s.id]
+  subnets            = [for s in data.aws_subnet.subnets : s.id]
 
   enable_deletion_protection = false
 
@@ -36,8 +35,6 @@ resource "aws_lb_listener" "front_end" {
   load_balancer_arn = aws_lb.alb.arn
   port              = "80"
   protocol          = "HTTP"
-  # ssl_policy        = "ELBSecurityPolicy-2016-08"
-  #certificate_arn   = "arn:aws:iam::187416307283:server-certificate/test_cert_rab3wuqwgja25ct3n4jdj2tzu4"
 
   default_action {
     type             = "forward"
@@ -45,6 +42,7 @@ resource "aws_lb_listener" "front_end" {
   }
 }
 
-output "alb" {
-  value = aws_lb.alb
+output "app_url" {
+  value       = aws_lb.alb.dns_name
+  description = "The public ALB DNS"
 }

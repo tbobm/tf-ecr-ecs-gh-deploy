@@ -41,8 +41,3 @@ resource "aws_lb_listener" "front_end" {
     target_group_arn = aws_lb_target_group.group.arn
   }
 }
-
-output "app_url" {
-  value       = aws_lb.alb.dns_name
-  description = "The public ALB DNS"
-}

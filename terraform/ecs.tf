@@ -13,9 +13,10 @@ resource "aws_ecs_task_definition" "task" {
   requires_compatibilities = [
     "FARGATE",
   ]
-  network_mode = "awsvpc"
-  cpu          = 256
-  memory       = 512
+  execution_role_arn = aws_iam_role.fargate.arn
+  network_mode       = "awsvpc"
+  cpu                = 256
+  memory             = 512
   container_definitions = jsonencode([
     {
       name      = local.container.name
@@ -47,5 +48,13 @@ resource "aws_ecs_service" "service" {
     target_group_arn = aws_lb_target_group.group.arn
     container_name   = "hello"
     container_port   = 80
+  }
+  deployment_controller {
+    type = "ECS"
+  }
+  capacity_provider_strategy {
+    base              = 0
+    capacity_provider = "FARGATE"
+    weight            = 100
   }
 }

@@ -14,7 +14,10 @@ resource "aws_iam_role" "fargate" {
         Effect = "Allow"
         Sid    = ""
         Principal = {
-          Service = "ecs.amazonaws.com"
+          Service = [
+            "ecs.amazonaws.com",
+            "ecs-tasks.amazonaws.com"
+          ]
         }
       },
     ]
@@ -32,7 +35,10 @@ resource "aws_iam_user_policy" "publisher" {
   "Statement": [
     {
       "Action": [
+        "iam:PassRole",
+        "iam:GetRole",
         "ecs:DescribeTaskDefinition",
+        "ecs:DescribeServices",
         "ecs:UpdateService",
         "ecs:RegisterTaskDefinition",
         "ecr:CompleteLayerUpload",

@@ -1,5 +1,3 @@
-# Infrastructure setup
-
 ## Requirements
 
 | Name | Version |
@@ -28,3 +26,12 @@
 | Name | Description |
 |------|-------------|
 | app\_url | The public ALB DNS |
+| aws\_region | The AWS region used |
+| container\_name | Container name for the ECS task |
+| ecr\_repository\_name | The ECR repository name |
+| ecr\_url | The ECR repository URL |
+| ecs\_cluster | The ECS cluster name |
+| ecs\_service | The ECS service name |
+| publisher\_access\_key | AWS\_ACCESS\_KEY to publish to ECR |
+| publisher\_secret\_key | AWS\_SECRET\_ACCESS\_KEY to upload to the ECR |
+

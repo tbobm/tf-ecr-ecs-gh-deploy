@@ -19,11 +19,6 @@ locals {
   vpc_defaults = {
     id                 = "vpc-ef26d387"
     availability_zones = ["${local.region}a", "${local.region}b", "${local.region}c"]
-    subnets = {
-      "${local.region}a" = "172.31.0.0/20"
-      "${local.region}b" = "172.31.16.0/24"
-      "${local.region}c" = "172.31.32.0/24"
-    }
   }
   vpc = merge(local.vpc_defaults, var.vpc_values)
 

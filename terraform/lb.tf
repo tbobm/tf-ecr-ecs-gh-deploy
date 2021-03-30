@@ -1,11 +1,5 @@
-resource "aws_lb_target_group" "group" {
-  name        = "tf-lb-tg"
-  port        = 80
-  protocol    = "HTTP"
-  vpc_id      = data.aws_vpc.main.id
-  target_type = "ip"
-
-  depends_on = [aws_lb.alb]
+data "aws_vpc" "main" {
+  id = local.vpc["id"]
 }
 
 data "aws_subnet" "subnets" {
@@ -14,21 +8,21 @@ data "aws_subnet" "subnets" {
   availability_zone = each.value
 }
 
-data "aws_vpc" "main" {
-  id = local.vpc["id"]
-}
-
 resource "aws_lb" "alb" {
-  name               = "tf-alb"
-  internal           = false
+  name               = local.lb["name"]
+  internal           = local.lb["internal"]
   load_balancer_type = "application"
   subnets            = [for s in data.aws_subnet.subnets : s.id]
+}
 
-  enable_deletion_protection = false
+resource "aws_lb_target_group" "group" {
+  name        = local.lb.target_group["name"]
+  port        = local.lb.target_group["port"]
+  protocol    = local.lb.target_group["protocol"]
+  vpc_id      = data.aws_vpc.main.id
+  target_type = "ip"
 
-  tags = {
-    Environment = "development"
-  }
+  depends_on = [aws_lb.alb]
 }
 
 resource "aws_lb_listener" "front_end" {

@@ -1,3 +1,13 @@
+output "aws_region" {
+  value       = local.region
+  description = "The AWS region used"
+}
+
+output "app_url" {
+  value       = aws_lb.alb.dns_name
+  description = "The public ALB DNS"
+}
+
 output "publisher_access_key" {
   value       = aws_iam_access_key.publisher.id
   description = "AWS_ACCESS_KEY to publish to ECR"
@@ -17,16 +27,6 @@ output "ecr_url" {
 output "ecr_repository_name" {
   value       = aws_ecr_repository.repository.name
   description = "The ECR repository name"
-}
-
-output "aws_region" {
-  value       = local.region
-  description = "The AWS region used"
-}
-
-output "app_url" {
-  value       = aws_lb.alb.dns_name
-  description = "The public ALB DNS"
 }
 
 output "ecs_cluster" {

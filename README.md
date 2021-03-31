@@ -3,6 +3,8 @@
 Create the AWS infrastructure (ECS, ECR, ALB, ...) to deploy a container and
 automatically update it using Github Action.
 
+Example run is available [here][ci-success].
+
 ## Core components
 
 ### AWS
@@ -27,3 +29,5 @@ The main goal is to provide an example configuration of the following workflow:
 - Build the Docker image
 - Publish it to a private ECR
 - Update the corresponding ECS Service (by editing the task image)
+
+[ci-success]: https://github.com/tbobm/tf-ecr-ecs-gh-deploy/actions/runs/704500533

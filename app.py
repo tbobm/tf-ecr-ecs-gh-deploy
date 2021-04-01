@@ -12,6 +12,12 @@ def create_app():
         """Healthcheck route."""
         return {"message": "flask is operational", "error": False}, 200
 
+    @app.route('/v2')
+    def route():
+        """Example route."""
+        message = "New route"
+        return {"message": message}, 200
+
     @app.route('/')
     def index():
         """Example route."""

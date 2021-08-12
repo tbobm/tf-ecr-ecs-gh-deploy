@@ -23,10 +23,10 @@ locals {
   lb = merge(local.lb_defaults, var.lb_values)
 
   vpc_defaults = {
-    id                 = "vpc-ef26d387"
-    availability_zones = ["${local.region}a", "${local.region}b", "${local.region}c"]
+    id = ""
   }
-  vpc = merge(local.vpc_defaults, var.vpc_values)
+  vpc             = merge(local.vpc_defaults, var.vpc)
+  use_default_vpc = local.vpc.id == ""
 
   container_defaults = {
     name  = "application"

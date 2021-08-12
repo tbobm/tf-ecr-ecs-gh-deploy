@@ -22,10 +22,10 @@ variable "lb_values" {
   description = "AWS Load Balancer configuration"
 }
 
-variable "vpc_values" {
+variable "vpc" {
   type        = any
   default     = {}
-  description = "AWS Load Balancer configuration"
+  description = "AWS VPC configuration"
 }
 
 variable "container" {

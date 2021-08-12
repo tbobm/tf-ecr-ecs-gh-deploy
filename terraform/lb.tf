@@ -1,13 +1,3 @@
-data "aws_vpc" "main" {
-  id = local.vpc["id"]
-}
-
-data "aws_subnet" "subnets" {
-  for_each          = toset(local.vpc.availability_zones)
-  vpc_id            = data.aws_vpc.main.id
-  availability_zone = each.value
-}
-
 resource "aws_lb" "alb" {
   name               = local.lb["name"]
   internal           = local.lb["internal"]
@@ -19,7 +9,7 @@ resource "aws_lb_target_group" "group" {
   name        = local.lb.target_group["name"]
   port        = local.lb.target_group["port"]
   protocol    = local.lb.target_group["protocol"]
-  vpc_id      = data.aws_vpc.main.id
+  vpc_id      = data.aws_vpc.vpc.id
   target_type = "ip"
 
   depends_on = [aws_lb.alb]

@@ -17,6 +17,7 @@ The following components are deployed:
 - ECS Cluster / ECS Service ([`./ecs.tf`](./terraform/ecs.tf))
 - Elastic Container Registry ([`./ecr.tf`](./terraform/ecr.tf))
 - IAM permissions ([`./iam.tf`](./terraform/iam.tf))
+- VPC configuration ([`./vpc.tf`](./terraform/vpc.tf))
 
 ### CI/CD
 

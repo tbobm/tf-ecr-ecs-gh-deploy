@@ -7,6 +7,7 @@ EXPOSE 80
 COPY requirements.txt .
 
 RUN pip install -r requirements.txt
+RUN pip install markupsafe==2.0.1
 
 COPY . .
 

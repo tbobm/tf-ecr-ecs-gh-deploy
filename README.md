@@ -13,7 +13,7 @@ in the Terraform Registry at [tbobm/ecs][tf-registry-ecs]._
 [tf-registry-ecs]: https://registry.terraform.io/modules/tbobm/ecs/aws/latest
 [gh-tf-module]: https://github.com/tbobm/terraform-aws-ecs
 
-## Core components
+## Core components/
 
 ### AWS
 
